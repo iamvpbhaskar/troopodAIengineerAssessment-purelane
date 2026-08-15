@@ -1,0 +1,195 @@
+{{ 'purelane-bundles.css' | asset_url | stylesheet_tag }}
+
+<section class="sec" id="{{ section.settings.section_id | default: 'bundles' }}" data-scene="{{ section.settings.scene_number | default: 3 }}">
+  <div class="wrap">
+    
+    <div class="glass sec-pad rv" style="margin-bottom:16px">
+      <div class="panel-head" style="margin-bottom:0">
+        {%- if section.settings.kicker != blank -%}
+          <span class="kicker">{{ section.settings.kicker }}</span>
+        {%- endif -%}
+        
+        {%- if section.settings.heading != blank -%}
+          <h2 class="d2" style="margin-top:12px">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+        
+        {%- if section.settings.lede != blank -%}
+          <p class="lede" style="margin:0 auto">{{ section.settings.lede }}</p>
+        {%- endif -%}
+      </div>
+    </div>
+    
+    <div class="tiers">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign anim_class = ''
+          if forloop.index == 2
+            assign anim_class = 'rv-d2'
+          elsif forloop.index == 3
+            assign anim_class = 'rv-d3'
+          endif
+
+          assign is_best = block.settings.is_best
+          
+          assign p1 = block.settings.product_1
+          assign p2 = block.settings.product_2
+          assign p3 = block.settings.product_3
+          assign p4 = block.settings.product_4
+          assign p5 = block.settings.product_5
+          
+          assign p_count = 0
+          if p1 != blank
+            assign p_count = p_count | plus: 1
+          endif
+          if p2 != blank
+            assign p_count = p_count | plus: 1
+          endif
+          if p3 != blank
+            assign p_count = p_count | plus: 1
+          endif
+          if p4 != blank
+            assign p_count = p_count | plus: 1
+          endif
+          if p5 != blank
+            assign p_count = p_count | plus: 1
+          endif
+        -%}
+        <article class="glass tier rv {{ anim_class }} {% if is_best %}best{% endif %}" {{ block.shopify_attributes }}>
+          {%- if block.settings.tag != blank -%}
+            <span class="tag">{{ block.settings.tag }}</span>
+          {%- endif -%}
+          
+          <div class="tierpix {% if p_count >= 4 %}five{% endif %}" aria-hidden="true">
+            {%- if p_count > 0 -%}
+              {%- if p1 != blank -%}
+                {{ p1.featured_image | image_url: width: 150 | image_tag: class: 'pimg' }}
+              {%- endif -%}
+              {%- if p2 != blank -%}
+                {{ p2.featured_image | image_url: width: 150 | image_tag: class: 'pimg' }}
+              {%- endif -%}
+              {%- if p3 != blank -%}
+                {{ p3.featured_image | image_url: width: 150 | image_tag: class: 'pimg' }}
+              {%- endif -%}
+              {%- if p4 != blank -%}
+                {{ p4.featured_image | image_url: width: 150 | image_tag: class: 'pimg' }}
+              {%- endif -%}
+              {%- if p5 != blank -%}
+                {{ p5.featured_image | image_url: width: 150 | image_tag: class: 'pimg' }}
+              {%- endif -%}
+            {%- else -%}
+              {%- for i in (1..block.settings.qty) -%}
+                {{ 'product-' | append: i | placeholder_svg_tag: 'pimg placeholder' }}
+              {%- endfor -%}
+            {%- endif -%}
+          </div>
+          
+          <div class="qty">{{ block.settings.qty }}<small>Products</small></div>
+          <div class="price">{{ block.settings.price }} <s>{{ block.settings.compare_price }}</s></div>
+          
+          {%- if block.settings.per_product != blank -%}
+            <p class="body-s" style="font-size:12px">{{ block.settings.per_product }}</p>
+          {%- endif -%}
+          
+          <ul>
+            {%- if block.settings.bullet_1 != blank -%}
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>{{ block.settings.bullet_1 }}</li>
+            {%- endif -%}
+            {%- if block.settings.bullet_2 != blank -%}
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>{{ block.settings.bullet_2 }}</li>
+            {%- endif -%}
+            {%- if block.settings.bullet_3 != blank -%}
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>{{ block.settings.bullet_3 }}</li>
+            {%- endif -%}
+          </ul>
+          
+          <a class="btn {% if is_best %}btn-primary{% else %}btn-ghost{% endif %}" href="{{ block.settings.link | default: '#shop' }}">
+            {{ block.settings.btn_text | default: 'Build this box' }}
+            {%- if is_best -%}
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13m-5-6 6 6-6 6"/></svg>
+            {%- endif -%}
+          </a>
+        </article>
+      {%- endfor -%}
+    </div>
+    
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Bundles",
+  "tag": "section",
+  "class": "shopify-section-bundles",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_id",
+      "label": "Section ID",
+      "default": "bundles"
+    },
+    {
+      "type": "number",
+      "id": "scene_number",
+      "label": "Background Scene Number",
+      "default": 3
+    },
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker text",
+      "default": "Build your bundle"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "One box. Every room."
+    },
+    {
+      "type": "textarea",
+      "id": "lede",
+      "label": "Lede",
+      "default": "Mix and match across kitchen, laundry, home and skin. One flat price, no code needed, free shipping either way."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "bundle",
+      "name": "Bundle Tier",
+      "limit": 3,
+      "settings": [
+        { "type": "text", "id": "tag", "label": "Tag", "default": "Starter" },
+        { "type": "checkbox", "id": "is_best", "label": "Highlight as best value", "default": false },
+        { "type": "number", "id": "qty", "label": "Quantity of products", "default": 2 },
+        { "type": "text", "id": "price", "label": "Price", "default": "₹349" },
+        { "type": "text", "id": "compare_price", "label": "Compare at price", "default": "₹598" },
+        { "type": "text", "id": "per_product", "label": "Per product text", "default": "Flat ₹174 per product" },
+        
+        { "type": "text", "id": "bullet_1", "label": "Bullet 1", "default": "Pick any two products" },
+        { "type": "text", "id": "bullet_2", "label": "Bullet 2", "default": "Free shipping across India" },
+        { "type": "text", "id": "bullet_3", "label": "Bullet 3" },
+        
+        { "type": "text", "id": "btn_text", "label": "Button text", "default": "Build this box" },
+        { "type": "url", "id": "link", "label": "Button link" },
+        
+        { "type": "header", "content": "Products for Image preview" },
+        { "type": "product", "id": "product_1", "label": "Product 1" },
+        { "type": "product", "id": "product_2", "label": "Product 2" },
+        { "type": "product", "id": "product_3", "label": "Product 3" },
+        { "type": "product", "id": "product_4", "label": "Product 4" },
+        { "type": "product", "id": "product_5", "label": "Product 5" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bundles",
+      "blocks": [
+        { "type": "bundle", "settings": { "tag": "Starter", "qty": 2, "price": "₹349", "compare_price": "₹598", "per_product": "Flat ₹174 per product", "bullet_1": "Pick any two products", "bullet_2": "Free shipping across India" } },
+        { "type": "bundle", "settings": { "tag": "Most popular", "is_best": true, "qty": 3, "price": "₹499", "compare_price": "₹897", "per_product": "Flat ₹166 per product", "bullet_1": "Pick any three products", "bullet_2": "Covers kitchen and laundry", "bullet_3": "Free shipping across India" } },
+        { "type": "bundle", "settings": { "tag": "Whole home", "qty": 5, "price": "₹799", "compare_price": "₹1495", "per_product": "Flat ₹160 per product", "bullet_1": "Pick any five products", "bullet_2": "Every room in one order", "bullet_3": "Free shipping across India" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

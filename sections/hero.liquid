@@ -1,0 +1,182 @@
+{{ 'section-hero.css' | asset_url | stylesheet_tag }}
+
+<section class="hero" data-scene="1">
+  <div class="hero-grid">
+
+{%- if section.blocks.size > 0 -%}
+      {%- assign badge_blocks = section.blocks | where: 'type', 'badge' -%}
+    {%- endif -%}
+
+    <div class="hero-copy">
+      <h1 class="d1 rv in">
+        {{ section.settings.heading_line1 }}<br>
+        {{ section.settings.heading_line2 }}
+        <span class="lime">{{ section.settings.heading_highlight }}</span>
+      </h1>
+
+      <div class="rule rv rv-d1">
+        <i></i>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c0-6.5 3.5-11 8-12.5C20 15 16.5 20 12 21Z"/><path d="M12 21C12 14.5 8.5 10 4 8.5 4 15 7.5 20 12 21Z"/></svg>
+        <i></i>
+      </div>
+
+      {%- if section.settings.lede != blank -%}
+        <p class="lede rv rv-d2">{{ section.settings.lede }}</p>
+      {%- endif -%}
+
+      <div class="hero-cta rv rv-d3">
+        {%- if section.settings.cta_primary_text != blank -%}
+          <a class="btn btn-primary" href="{{ section.settings.cta_primary_link | default: '#shop' }}">
+            {{ section.settings.cta_primary_text }}
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13m-5-6 6 6-6 6"/></svg>
+          </a>
+        {%- endif -%}
+        {%- if section.settings.cta_secondary_text != blank -%}
+          <a class="btn btn-ghost" href="{{ section.settings.cta_secondary_link | default: '#how' }}">{{ section.settings.cta_secondary_text }}</a>
+        {%- endif -%}
+      </div>
+
+
+    </div>
+
+    {%- assign slide_blocks = section.blocks | where: 'type', 'slide' -%}
+    {%- if slide_blocks.size > 0 -%}
+      <div class="hero-prod" id="heroProd">
+        <div class="hstage" id="hstage">
+          {%- for block in slide_blocks -%}
+            {%- liquid
+              assign slide_index = forloop.index
+              assign total_price = 0
+              assign total_compare = 0
+              assign product_count = 0
+
+              if block.settings.product_1 != blank
+                assign total_price = total_price | plus: block.settings.product_1.price
+                assign total_compare = total_compare | plus: block.settings.product_1.compare_at_price
+                assign product_count = product_count | plus: 1
+              endif
+              if block.settings.product_2 != blank
+                assign total_price = total_price | plus: block.settings.product_2.price
+                assign total_compare = total_compare | plus: block.settings.product_2.compare_at_price
+                assign product_count = product_count | plus: 1
+              endif
+              if block.settings.product_3 != blank
+                assign total_price = total_price | plus: block.settings.product_3.price
+                assign total_compare = total_compare | plus: block.settings.product_3.compare_at_price
+                assign product_count = product_count | plus: 1
+              endif
+            -%}
+            <div class="hslide hs{{ slide_index }}{% if forloop.first %} on{% endif %}" data-n="{{ slide_index }}" {{ block.shopify_attributes }}>
+              {%- if block.settings.product_1 != blank -%}
+                <span class="hp p-a d1" role="img" aria-label="{{ block.settings.product_1.title | escape }}">
+                  {%- if block.settings.product_1.featured_image -%}
+                    {{ block.settings.product_1.featured_image | image_url: width: 400 | image_tag }}
+                  {%- endif -%}
+                </span>
+              {%- endif -%}
+              {%- if block.settings.product_2 != blank -%}
+                <span class="hp p-b d2" role="img" aria-label="{{ block.settings.product_2.title | escape }}">
+                  {%- if block.settings.product_2.featured_image -%}
+                    {{ block.settings.product_2.featured_image | image_url: width: 400 | image_tag }}
+                  {%- endif -%}
+                </span>
+              {%- endif -%}
+              {%- if block.settings.product_3 != blank -%}
+                <span class="hp p-c d3" role="img" aria-label="{{ block.settings.product_3.title | escape }}">
+                  {%- if block.settings.product_3.featured_image -%}
+                    {{ block.settings.product_3.featured_image | image_url: width: 400 | image_tag }}
+                  {%- endif -%}
+                </span>
+              {%- endif -%}
+
+              <div class="glass-2 ptag">
+                <span class="lbl">{{ block.settings.slide_label }}</span>
+                <span class="val">
+                  <strong>{{ total_price | money }}</strong>
+                  {%- if total_compare > total_price -%}
+                    <s>{{ total_compare | money }}</s>
+                  {%- endif -%}
+                </span>
+                {%- if total_compare > total_price -%}
+                  {%- assign saved = total_compare | minus: total_price -%}
+                  <span class="cut">
+                    {%- if product_count > 1 -%}
+                      Save {{ saved | money }}
+                    {%- else -%}
+                      {{ block.settings.discount_label | default: 'Sale' }}
+                    {%- endif -%}
+                  </span>
+                {%- endif -%}
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+
+        {%- if slide_blocks.size > 1 -%}
+          <div class="hdots" id="hdots">
+            {%- for block in slide_blocks -%}
+              <button type="button" class="{% if forloop.first %}on{% endif %}" aria-label="Show slide {{ forloop.index }}"></button>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+  </div>
+</section>
+
+<script src="{{ 'section-hero.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "Hero",
+  "tag": "section",
+  "class": "shopify-section-hero",
+  "settings": [
+    { "type": "header", "content": "Headline" },
+    { "type": "text", "id": "heading_line1", "label": "Heading — line 1", "default": "Clean" },
+    { "type": "text", "id": "heading_line2", "label": "Heading — line 2", "default": "That" },
+    { "type": "text", "id": "heading_highlight", "label": "Heading — highlighted word", "default": "Lasts" },
+    { "type": "textarea", "id": "lede", "label": "Supporting text", "default": "Homecare that works on the toughest grime, made from plants. Kind to your home, your family and the world outside it." },
+    { "type": "header", "content": "Buttons" },
+    { "type": "text", "id": "cta_primary_text", "label": "Primary button label", "default": "Shop now" },
+    { "type": "url", "id": "cta_primary_link", "label": "Primary button link" },
+    { "type": "text", "id": "cta_secondary_text", "label": "Secondary button label", "default": "How it works" },
+    { "type": "url", "id": "cta_secondary_link", "label": "Secondary button link" }
+  ],
+  "blocks": [
+    {
+      "type": "badge",
+      "name": "Trust badge",
+      "settings": [
+        { "type": "html", "id": "icon", "label": "Icon (SVG code)", "default": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\"><circle cx=\"12\" cy=\"12\" r=\"8\"/></svg>" },
+        { "type": "text", "id": "label", "label": "Label", "default": "Plant powered" },
+        { "type": "text", "id": "label_short", "label": "Short label (badge strip)", "info": "Optional — used in the lower badge strip if different from the label above" }
+      ]
+    },
+    {
+      "type": "slide",
+      "name": "Product bundle slide",
+      "settings": [
+        { "type": "text", "id": "slide_label", "label": "Slide label", "default": "Single bottle" },
+        { "type": "product", "id": "product_1", "label": "Product 1" },
+        { "type": "product", "id": "product_2", "label": "Product 2 (optional)" },
+        { "type": "product", "id": "product_3", "label": "Product 3 (optional)" },
+        { "type": "text", "id": "discount_label", "label": "Discount label (single product only)", "default": "Sale", "info": "Shown when only one product is selected and it has a compare-at price" }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "Hero",
+      "blocks": [
+        { "type": "badge", "settings": { "label": "Plant powered" } },
+        { "type": "badge", "settings": { "label": "Safe for kids & pets" } },
+        { "type": "badge", "settings": { "label": "Zero harsh chemicals" } },
+        { "type": "slide", "settings": { "slide_label": "Single bottle" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

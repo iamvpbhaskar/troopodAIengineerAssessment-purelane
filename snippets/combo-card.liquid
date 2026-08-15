@@ -1,0 +1,112 @@
+{%- comment -%}
+  Accepts:
+  - combo: {Object} Metaobject OR
+  - block: {Object} Section block
+
+  For this snippet, we read properties uniformly whether they come from a block.settings or a metaobject field.
+{%- endcomment -%}
+
+{%- liquid
+  assign title = block.settings.title | default: combo.title
+  assign savings_label = block.settings.savings_label | default: combo.savings_label
+  assign flag_label = block.settings.flag_label | default: combo.flag_label
+  assign is_hero = block.settings.is_hero | default: combo.is_hero
+  assign includes_text = block.settings.includes_text | default: combo.includes_text
+  assign price = block.settings.price | default: combo.price
+  assign compare_price = block.settings.compare_price | default: combo.compare_price
+  assign discount_pill = block.settings.discount_pill | default: combo.discount_pill
+  assign link = block.settings.link | default: combo.link
+
+  assign product_1 = block.settings.product_1 | default: combo.product_1.value
+  assign product_1_label = block.settings.product_1_label | default: combo.product_1_label
+  
+  assign product_2 = block.settings.product_2 | default: combo.product_2.value
+  assign product_2_label = block.settings.product_2_label | default: combo.product_2_label
+
+  assign product_3 = block.settings.product_3 | default: combo.product_3.value
+  assign product_3_label = block.settings.product_3_label | default: combo.product_3_label
+
+  assign product_count = 0
+  if product_1 != blank
+    assign product_count = product_count | plus: 1
+  endif
+  if product_2 != blank
+    assign product_count = product_count | plus: 1
+  endif
+  if product_3 != blank
+    assign product_count = product_count | plus: 1
+  endif
+-%}
+
+<article class="glass combo {% if is_hero %}hero-combo{% endif %}" {{ block.shopify_attributes }}>
+  <div class="tray">
+    {%- if savings_label != blank -%}
+      <span class="save">{{ savings_label }}</span>
+    {%- endif -%}
+    {%- if flag_label != blank -%}
+      <span class="flag">{{ flag_label }}</span>
+    {%- endif -%}
+    
+    <div class="stack">
+      {%- if product_1 != blank -%}
+        <span class="it">
+          {%- if product_1.featured_image != blank -%}
+            {{ product_1.featured_image | image_url: width: 200 | image_tag: class: 'pimg' }}
+          {%- else -%}
+            {{ 'product-1' | placeholder_svg_tag: 'pimg placeholder' }}
+          {%- endif -%}
+          <span>{{ product_1_label | default: product_1.title }}</span>
+        </span>
+      {%- endif -%}
+      
+      {%- if product_2 != blank -%}
+        <span class="plus" aria-hidden="true">+</span>
+        <span class="it">
+          {%- if product_2.featured_image != blank -%}
+            {{ product_2.featured_image | image_url: width: 200 | image_tag: class: 'pimg' }}
+          {%- else -%}
+            {{ 'product-2' | placeholder_svg_tag: 'pimg placeholder' }}
+          {%- endif -%}
+          <span>{{ product_2_label | default: product_2.title }}</span>
+        </span>
+      {%- endif -%}
+      
+      {%- if product_3 != blank -%}
+        <span class="plus" aria-hidden="true">+</span>
+        <span class="it">
+          {%- if product_3.featured_image != blank -%}
+            {{ product_3.featured_image | image_url: width: 200 | image_tag: class: 'pimg' }}
+          {%- else -%}
+            {{ 'product-3' | placeholder_svg_tag: 'pimg placeholder' }}
+          {%- endif -%}
+          <span>{{ product_3_label | default: product_3.title }}</span>
+        </span>
+      {%- endif -%}
+    </div>
+  </div>
+  
+  <div class="body">
+    <h3>{{ title }}</h3>
+    <div class="cnt">{{ product_count }} products</div>
+    {%- if includes_text != blank -%}
+      <p class="inc">{{ includes_text }}</p>
+    {%- endif -%}
+    
+    <div class="prow">
+      <strong>{{ price }}</strong>
+      {%- if compare_price != blank -%}
+        <s>{{ compare_price }}</s>
+      {%- endif -%}
+      {%- if discount_pill != blank -%}
+        <em>{{ discount_pill }}</em>
+      {%- endif -%}
+    </div>
+    
+    <div class="fine">Inclusive of all taxes &middot; COD available</div>
+    
+    <a class="btn {% if is_hero %}btn-primary{% else %}btn-ghost{% endif %}" href="{{ link | default: '#bundles' }}">
+      Shop bundle
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13m-5-6 6 6-6 6"/></svg>
+    </a>
+  </div>
+</article>

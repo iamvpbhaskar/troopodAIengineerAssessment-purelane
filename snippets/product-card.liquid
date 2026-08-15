@@ -1,0 +1,44 @@
+{%- comment -%}
+  Accepts:
+  - product: {Object} Product Liquid object
+  - anim_class: {String} Optional animation delay class (e.g. 'rv-d1')
+{%- endcomment -%}
+
+<article class="glass card rv{% if anim_class %} {{ anim_class }}{% endif %}">
+  <div class="shot">
+    {%- comment -%} Optional pill logic - could read from tags or metafields {%- endcomment -%}
+    {%- if product.tags contains 'bestseller' -%}
+      <span class="pill">Best seller</span>
+    {%- elsif product.tags contains 'new' -%}
+      <span class="pill">New</span>
+    {%- endif -%}
+
+    {%- if product.featured_image != blank -%}
+      {{ product.featured_image | image_url: width: 300 | image_tag: class: 'pimg' }}
+    {%- else -%}
+      {{ 'product-1' | placeholder_svg_tag: 'pimg placeholder' }}
+    {%- endif -%}
+  </div>
+  <h4>{{ product.title | escape }}</h4>
+  
+  {%- comment -%} Hardcoded rating for now as per prototype {%- endcomment -%}
+  <div class="rate"><b>★ 4.8</b> · 237 reviews</div>
+  
+  <div class="pr">
+    <strong>{{ product.price | money }}</strong>
+    {%- if product.compare_at_price > product.price -%}
+      <s>{{ product.compare_at_price | money }}</s>
+      {%- assign discount = product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | round -%}
+      <em>{{ discount }}% off</em>
+    {%- endif -%}
+  </div>
+  
+  {%- if product.available -%}
+    {%- form 'product', product, id: product.id, class: 'card-form' -%}
+      <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+      <button type="submit" class="btn btn-ghost btn-sm">Add to cart</button>
+    {%- endform -%}
+  {%- else -%}
+    <button class="btn btn-ghost btn-sm" disabled>Sold out</button>
+  {%- endif -%}
+</article>

@@ -1,0 +1,75 @@
+/* ============================================================
+   SHOP GRID SECTION
+   ============================================================ */
+
+/* ---------- SHELF ---------- */
+.shelf{display:grid;gap:14px;grid-template-columns:repeat(2,1fr)}
+@media(min-width:860px){.shelf{grid-template-columns:repeat(4,1fr)}}
+
+.card{padding:16px;display:flex;flex-direction:column;transition:.4s var(--ease);position:relative}
+.card:hover{transform:translateY(-5px)}
+
+.card .shot{height:150px;border-radius:14px;margin-bottom:14px;display:grid;place-items:center;position:relative;overflow:hidden;
+  background:linear-gradient(160deg,rgba(236,230,247,.12),rgba(75,58,143,.2));border:1px solid rgba(236,230,247,.14)}
+
+.card .shot svg.placeholder{height:100%;width:auto;opacity:0.3;fill:var(--brand)}
+.card .shot .pimg{height:108px}
+
+.card .pill{position:absolute;top:9px;left:9px;font-size:8.5px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;
+  padding:4px 9px;border-radius:4px;background:rgba(23,16,43,.6);border:1px solid rgba(163, 177, 138, .32);color:var(--accent)}
+
+.card h4{font-family:'Outfit',sans-serif;font-size:13.5px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;color:var(--surface);line-height:1.2;margin-bottom:7px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;text-overflow:ellipsis}
+
+.card .rate{font-size:11.5px;color:var(--paper-2);margin-bottom:10px;display:flex;align-items:center;gap:5px}
+.card .rate b{color:var(--accent);font-weight:700}
+
+.card .pr{margin-top:auto;display:flex;align-items:baseline;gap:8px;margin-bottom:12px}
+.card .pr strong{font-family:'Outfit',sans-serif;font-size:18px;color:var(--surface);font-weight:700}
+.card .pr s{font-size:12px;color:var(--paper-3)}
+.card .pr em{font-style:normal;font-size:10px;font-weight:800;letter-spacing:.08em;color:var(--accent)}
+
+.card .card-form {width:100%}
+.card .btn{width:100%;justify-content:center}
+
+/* ---------- BRAND COLOUR OVERRIDES FOR CARDS ---------- */
+.card .pill{background:rgba(255,255,255,.86);border:1px solid rgba(201,118,29,.34);color:#4f7d10}
+.card .shot{background:linear-gradient(160deg,rgba(255,255,255,.60),rgba(236,230,247,.42));
+  border:1px solid rgba(255,255,255,.6)}
+
+@media(max-width:360px) {
+    .card h4 {
+        font-size: 11px;
+    }
+    .card .rate {
+        font-size: 10px;
+        flex-wrap: wrap;
+        gap: 2px 5px;
+    }
+    .card .pr {
+        gap: 4px 6px;
+        margin-bottom: 8px;
+        flex-wrap: wrap;
+    }
+    .card .pr strong {
+        font-size: 14px;
+    }
+    .card .pr s {
+        font-size: 10px;
+    }
+    .card .pr em {
+        font-size: 9px;
+        letter-spacing: 0;
+        white-space: nowrap;
+    }
+    .card .btn {
+        font-size: 10px;
+        padding: 0 10px;
+        height: 36px;
+    }
+}
+.card .shot .pimg{height:108px; width:auto; object-fit:contain; max-width:90%; filter:drop-shadow(0 8px 13px rgba(0,74,66,.13))}
+
+@media(max-width:760px){
+  .card .shot{height:126px}
+  .card .shot .pimg{height:108px}
+}

@@ -1,0 +1,338 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "blocks": {
+        "slide_1": {
+          "type": "slide",
+          "settings": {
+            "slide_label": "Single bottle",
+            "product_1": "tap-cleaner-limescale-remover"
+          }
+        },
+        "slide_2": {
+          "type": "slide",
+          "settings": {
+            "slide_label": "Any 2 products",
+            "product_1": "tap-cleaner-limescale-remover",
+            "product_2": "kitchen-cleaner-foaming"
+          }
+        },
+        "slide_3": {
+          "type": "slide",
+          "settings": {
+            "slide_label": "Any 3 products",
+            "product_1": "tap-cleaner-limescale-remover",
+            "product_2": "copper-bronze-brass-cleaner",
+            "product_3": "kitchen-cleaner-foaming"
+          }
+        }
+      },
+      "block_order": [
+        "slide_1",
+        "slide_2",
+        "slide_3"
+      ],
+      "settings": {
+        "heading_line1": "Clean",
+        "heading_line2": "That",
+        "heading_highlight": "Lasts",
+        "lede": "Homecare that works on the toughest grime, made from plants. Kind to your home, your family and the world outside it.",
+        "cta_primary_text": "Shop now",
+        "cta_primary_link": "shopify://collections/all",
+        "cta_secondary_text": "How it works",
+        "cta_secondary_link": ""
+      }
+    },
+    "purelane_reviews": {
+      "type": "purelane-reviews",
+      "blocks": {
+        "review_1": {
+          "type": "review",
+          "settings": {
+            "title": "Works like a charm",
+            "content": "Finally an eco option that cleans as well as the chemical detergent I used for years, and it smells better.",
+            "author": "Anita",
+            "product_label": "Laundry detergent"
+          }
+        },
+        "review_2": {
+          "type": "review",
+          "settings": {
+            "title": "Best dishwash ever",
+            "content": "Our old dishwash left my help with dry, cracked skin. That stopped completely after we switched.",
+            "author": "Priya",
+            "product_label": "Dishwash gel"
+          }
+        },
+        "review_3": {
+          "type": "review",
+          "settings": {
+            "title": "Great product, great packaging",
+            "content": "Very soft on hands with a lovely fragrance, and it feels good to be using far less plastic.",
+            "author": "Sunita",
+            "product_label": "Liquid handwash"
+          }
+        },
+        "review_4": {
+          "type": "review",
+          "settings": {
+            "title": "Dog friendly",
+            "content": "We switched because chemical floor cleaners were setting off my dog's allergies. No reactions since.",
+            "author": "Rohit S.",
+            "product_label": "Floor cleaner"
+          }
+        },
+        "review_5": {
+          "type": "review",
+          "settings": {
+            "title": "Sparkling taps again",
+            "content": "Hard water had ruined our bathroom fittings. Two sprays and the scale wipes straight off, no scrubbing.",
+            "author": "Verified buyer",
+            "product_label": "Tap cleaner"
+          }
+        }
+      },
+      "block_order": [
+        "review_1",
+        "review_2",
+        "review_3",
+        "review_4",
+        "review_5"
+      ],
+      "settings": {
+        "section_id": "reviews",
+        "scene_number": 1,
+        "kicker": "That's what they said",
+        "rating_text": "<p><b>4.8</b> from 8,000+ reviews</p>",
+        "homes_text": "<p>Loved by <b>12 lakh+</b> homes</p>"
+      }
+    },
+    "purelane_shop": {
+      "type": "purelane-shop",
+      "settings": {
+        "section_id": "shop",
+        "scene_number": 3,
+        "kicker": "Bestsellers",
+        "heading": "Loved by 30,000 homes",
+        "collection": "all",
+        "products_to_show": 8
+      }
+    },
+    "purelane_combos": {
+      "type": "purelane-combos",
+      "blocks": {
+        "combo_1": {
+          "type": "combo",
+          "settings": {
+            "title": "Kitchen essentials",
+            "savings_label": "You save $398",
+            "price": "$499",
+            "compare_price": "$897",
+            "discount_pill": "Save $398",
+            "includes_text": "Includes: Foaming Kitchen Cleaner, Dishwash Gel & Tap Cleaner. Everything for a sparkling kitchen, no need to pick separately.",
+            "product_1": "tap-cleaner-limescale-remover",
+            "product_2": "kitchen-cleaner-foaming",
+            "product_3": "copper-bronze-brass-cleaner"
+          }
+        },
+        "combo_2": {
+          "type": "combo",
+          "settings": {
+            "title": "Laundry care bundle",
+            "savings_label": "You save $448",
+            "price": "$499",
+            "compare_price": "$947",
+            "discount_pill": "Save $448",
+            "includes_text": "Includes: Laundry Detergent, Fabric Conditioner & Machine Cleaner Powder. Softer, fresher wash, all in one box.",
+            "product_1": "tap-cleaner-limescale-remover",
+            "product_2": "kitchen-cleaner-foaming"
+          }
+        },
+        "combo_3": {
+          "type": "combo",
+          "settings": {
+            "title": "Complete home bundle",
+            "is_hero": true,
+            "savings_label": "Biggest saving",
+            "flag_label": "Best value",
+            "price": "$799",
+            "compare_price": "$1,495",
+            "discount_pill": "Save $696",
+            "includes_text": "Includes: Kitchen Cleaner, Laundry Detergent, Floor Cleaner, Toilet Cleaner & Handwash. Our biggest saving box.",
+            "product_1": "tap-cleaner-limescale-remover",
+            "product_2": "kitchen-cleaner-foaming",
+            "product_3": "copper-bronze-brass-cleaner"
+          }
+        },
+        "combo_4": {
+          "type": "combo",
+          "settings": {
+            "title": "Bathroom deep clean",
+            "savings_label": "You save $398",
+            "price": "$499",
+            "compare_price": "$897",
+            "discount_pill": "Save $398",
+            "includes_text": "Includes: Toilet Cleaner, Tap Cleaner & Magic Eraser. A complete bathroom refresh in one box.",
+            "product_1": "washing-machine-cleaner-descaler",
+            "product_1_label": "Kills 99.9% germs",
+            "product_2": "tap-cleaner-limescale-remover",
+            "product_2_label": "Melts hard water stains",
+            "product_3": "natural-herbal-floor-cleaner",
+            "product_3_label": "Scrubs away soap scum"
+          }
+        },
+        "combo_5": {
+          "type": "combo",
+          "settings": {
+            "title": "Hard water solution kit",
+            "savings_label": "You save $249",
+            "price": "$349",
+            "compare_price": "$598",
+            "discount_pill": "Save $249",
+            "includes_text": "Includes: Tap Cleaner & Toilet Cleaner. A quick, focused fix for hard water stains across the home.",
+            "product_1": "tap-cleaner-limescale-remover",
+            "product_1_label": "Melts hard water stains",
+            "product_2": "washing-machine-cleaner-descaler",
+            "product_2_label": "Fights limescale in the bowl"
+          }
+        }
+      },
+      "block_order": [
+        "combo_1",
+        "combo_2",
+        "combo_3",
+        "combo_4",
+        "combo_5"
+      ],
+      "settings": {
+        "section_id": "combos",
+        "scene_number": 3,
+        "kicker": "Pre-built to save you money",
+        "heading": "Best selling combos"
+      }
+    },
+    "purelane_bundles": {
+      "type": "purelane-bundles",
+      "blocks": {
+        "bundle_1": {
+          "type": "bundle",
+          "settings": {
+            "tag": "Starter",
+            "qty": 2,
+            "price": "$349",
+            "compare_price": "$598",
+            "per_product": "Flat $174 per product",
+            "bullet_1": "Pick any two products",
+            "bullet_2": "Free shipping across India",
+            "product_1": "tap-cleaner-limescale-remover",
+            "product_2": "kitchen-cleaner-foaming"
+          }
+        },
+        "bundle_2": {
+          "type": "bundle",
+          "settings": {
+            "tag": "Most popular",
+            "is_best": true,
+            "qty": 3,
+            "price": "$499",
+            "compare_price": "$897",
+            "per_product": "Flat $166 per product",
+            "bullet_1": "Pick any three products",
+            "bullet_2": "Covers kitchen and laundry",
+            "bullet_3": "Free shipping across India",
+            "product_1": "tap-cleaner-limescale-remover",
+            "product_2": "kitchen-cleaner-foaming",
+            "product_3": "copper-bronze-brass-cleaner"
+          }
+        },
+        "bundle_3": {
+          "type": "bundle",
+          "settings": {
+            "tag": "Whole home",
+            "qty": 5,
+            "price": "$799",
+            "compare_price": "$1495",
+            "per_product": "Flat $160 per product",
+            "bullet_1": "Pick any five products",
+            "bullet_2": "Every room in one order",
+            "bullet_3": "Free shipping across India",
+            "product_1": "tap-cleaner-limescale-remover",
+            "product_2": "kitchen-cleaner-foaming",
+            "product_3": "copper-bronze-brass-cleaner",
+            "product_4": "washing-machine-cleaner-descaler",
+            "product_5": "natural-herbal-floor-cleaner"
+          }
+        }
+      },
+      "block_order": [
+        "bundle_1",
+        "bundle_2",
+        "bundle_3"
+      ],
+      "settings": {
+        "section_id": "bundles",
+        "scene_number": 3,
+        "kicker": "Build your bundle",
+        "heading": "One box. Every room."
+      }
+    },
+    "purelane_ingredients": {
+      "type": "purelane-ingredients",
+      "blocks": {
+        "ingredient_1": { "type": "ingredient", "settings": { "icon": "coconut", "title": "Coconut", "description": "Plant-derived cleansers that lift grease" } },
+        "ingredient_2": { "type": "ingredient", "settings": { "icon": "orange", "title": "Orange peel", "description": "Natural degreaser and fresh citrus lift" } },
+        "ingredient_3": { "type": "ingredient", "settings": { "icon": "soapnut", "title": "Soap nut", "description": "A traditional plant foaming agent" } },
+        "ingredient_4": { "type": "ingredient", "settings": { "icon": "neem", "title": "Neem", "description": "Time-tested antibacterial from the tree" } },
+        "ingredient_5": { "type": "ingredient", "settings": { "icon": "lemongrass", "title": "Lemongrass", "description": "Clean fragrance with nothing synthetic" } }
+      },
+      "block_order": ["ingredient_1", "ingredient_2", "ingredient_3", "ingredient_4", "ingredient_5"]
+    },
+    "purelane_how": {
+      "type": "purelane-how",
+      "settings": {
+        "pillar_1_btn_link": "#shop",
+        "pillar_2_btn_link": "#ingredients",
+        "pillar_3_btn_link": "#proof"
+      }
+    },
+    "purelane_proof": {
+      "type": "purelane-proof",
+      "blocks": {
+        "stat_1": { "type": "stat", "settings": { "stat_value": "99.9%", "stat_title": "Germ kill", "stat_desc": "Tested against germs and bacteria" } },
+        "stat_2": { "type": "stat", "settings": { "stat_value": "0%", "stat_title": "Sulphates", "stat_desc": "No SLS, chlorine or parabens" } },
+        "stat_3": { "type": "stat", "settings": { "stat_value": "100%", "stat_title": "Plant based", "stat_desc": "Cleansers derived from plants" } },
+        "stat_4": { "type": "stat", "settings": { "stat_value": "100%", "stat_title": "Recyclable", "stat_desc": "Packaging made to be reused" } }
+      },
+      "block_order": ["stat_1", "stat_2", "stat_3", "stat_4"],
+      "settings": {
+        "btn_link": "#ingredients"
+      }
+    },
+    "purelane_whybundles": {
+      "type": "purelane-whybundles"
+    },
+    "purelane_categories": {
+      "type": "purelane-categories",
+      "blocks": {
+        "cat_1": { "type": "category", "settings": { "icon_class": "p-kitchen", "title": "Kitchen bundle", "desc": "Grease, dishes & more", "link": "#combos" } },
+        "cat_2": { "type": "category", "settings": { "icon_class": "p-toilet", "title": "Bathroom bundle", "desc": "Deep clean & disinfect", "link": "#combos" } },
+        "cat_3": { "type": "category", "settings": { "icon_class": "p-laundry", "title": "Laundry bundle", "desc": "Softer, fresher wash", "link": "#combos" } },
+        "cat_4": { "type": "category", "settings": { "icon_class": "p-tap", "title": "Hard water bundle", "desc": "Melt away limescale", "link": "#combos" } }
+      },
+      "block_order": ["cat_1", "cat_2", "cat_3", "cat_4"]
+    }
+  },
+  "order": [
+    "hero",
+    "purelane_ingredients",
+    "purelane_how",
+    "purelane_proof",
+    "purelane_reviews",
+    "purelane_shop",
+    "purelane_combos",
+    "purelane_bundles",
+    "purelane_whybundles",
+    "purelane_categories"
+  ]
+}
