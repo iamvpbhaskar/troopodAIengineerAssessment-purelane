@@ -5,7 +5,7 @@ Welcome to my submission for the AI Product Engineer assignment! This repository
 ## 🔗 Live Dev Store Access
 
 - **Store URL:** [purelane-build-xlrtbxvl.myshopify.com](https://purelane-build-xlrtbxvl.myshopify.com)
-- **Password:** *(Please insert your store password here before submitting)*
+- **Password:** *(Shared securely via email submission)*
 
 ---
 
