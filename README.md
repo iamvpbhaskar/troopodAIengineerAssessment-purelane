@@ -1,99 +1,52 @@
-# Dawn
+# Purelane Shopify Build - Troopod AI Product Engineer Assignment
 
-[![Build status](https://github.com/shopify/dawn/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Shopify/dawn/actions/workflows/ci.yml?query=branch%3Amain)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?color=informational)](/.github/CONTRIBUTING.md)
+Welcome to my submission for the AI Product Engineer assignment! This repository contains the fully functional, merchant-editable Shopify sections built from the provided `purelane-homepage.html` prototype.
 
-[Getting started](#getting-started) |
-[Staying up to date with Dawn changes](#staying-up-to-date-with-dawn-changes) |
-[Developer tools](#developer-tools) |
-[Contributing](#contributing) |
-[Code of conduct](#code-of-conduct) |
-[Theme Store submission](#theme-store-submission) |
-[License](#license)
+## 🔗 Live Dev Store Access
 
-Dawn represents a HTML-first, JavaScript-only-as-needed approach to theme development. It's Shopify's first source available theme with performance, flexibility, and [Online Store 2.0 features](https://www.shopify.com/partners/blog/shopify-online-store) built-in and acts as a reference for building Shopify themes.
+- **Store URL:** [purelane-build-xlrtbxvl.myshopify.com](https://purelane-build-xlrtbxvl.myshopify.com)
+- **Password:** *(Please insert your store password here before submitting)*
 
-* **Web-native in its purest form:** Themes run on the [evergreen web](https://www.w3.org/2001/tag/doc/evergreen-web/). We leverage the latest web browsers to their fullest, while maintaining support for the older ones through progressive enhancement—not polyfills.
-* **Lean, fast, and reliable:** Functionality and design defaults to “no” until it meets this requirement. Code ships on quality. Themes must be built with purpose. They shouldn’t support each and every feature in Shopify.
-* **Server-rendered:** HTML must be rendered by Shopify servers using Liquid. Business logic and platform primitives such as translations and money formatting don’t belong on the client. Async and on-demand rendering of parts of the page is OK, but we do it sparingly as a progressive enhancement.
-* **Functional, not pixel-perfect:** The Web doesn’t require each page to be rendered pixel-perfect by each browser engine. Using semantic markup, progressive enhancement, and clever design, we ensure that themes remain functional regardless of the browser.
+---
 
-You can find a more detailed version of our theme code principles in the [contribution guide](https://github.com/Shopify/dawn/blob/main/.github/CONTRIBUTING.md#theme-code-principles).
+## 🛠️ 1. Notes on the Build (Precision & Architecture)
 
-## Getting started
-We recommend using Dawn as a starting point for theme development. [Learn more on Shopify.dev](https://shopify.dev/themes/getting-started/create).
+The goal of this build was to strictly adhere to the provided design prototype while ensuring the code underneath was semantic, accessible, and 100% merchant-editable in the Shopify Customizer. 
 
-> If you're building a theme for the Shopify Theme Store, then you can use Dawn as a starting point. However, the theme that you submit needs to be [substantively different from Dawn](https://shopify.dev/themes/store/requirements#uniqueness) so that it provides added value for merchants. Learn about the [ways that you can use Dawn](https://shopify.dev/themes/tools/dawn#ways-to-use-dawn).
+### What I flagged about the original prototype:
+* **Hardcoded Constraints:** The prototype was a static monolith heavily reliant on fixed viewport widths, massive clamp-based typography that broke on ultra-small screens, and no semantic separation of concerns. 
+* **Lack of Data Scalability:** The CSS grids lacked text-wrapping rules, meaning any dynamically injected real-world data (like exceptionally long product titles) would instantly break the flex boundaries on mobile devices.
 
-Please note that the main branch may include code for features not yet released. The "stable" version of Dawn is available in the theme store.
+### What I changed & why:
+* **Modularized Architecture:** I decomposed the static HTML into 8 discrete Shopify Liquid sections (`hero`, `ticker`, `shop`, `categories`, `combos`, `how-it-works`, `header`, `footer`).
+* **Zero Hardcoding:** Everything from the header's navigation menu and SVG branding to the product grid's content is tied to `section.settings` or native Shopify objects (`collection.products`). The marketing team can swap out the "Clean, simply" tagline or change the hero imagery without ever touching the code.
+* **Granular CSS & Performance:** Instead of one massive stylesheet, I broke the CSS down per section (`purelane-header.css`, `purelane-shop.css`, etc.) and loaded them dynamically via Shopify's `stylesheet_tag` only when their respective sections are rendered. This satisfies the Core Web Vitals requirement.
+* **Micro-details & Edge-case Handling:** 
+  * Implemented strict `-webkit-line-clamp` boundaries on the product cards to ensure grid heights remain uniform even if a merchant uploads a 4-line product title.
+  * Added specific media queries for `320px` viewports to ensure "33% off" tags and CTA buttons scale intelligently instead of overflowing the screen.
+  * Rebuilt the static desktop header into a dynamic, context-aware layout that intelligently switches to a day-theme on interior pages, complete with a fully animated, glassmorphic mobile hamburger dropdown.
 
-## Staying up to date with Dawn changes
+### Metafields & Metaobjects:
+No custom Metafields were strictly required to achieve 100% of the visual output, as the core content loops nicely through native `collections` and `products`. 
 
-Say you're building a new theme off Dawn but you still want to be able to pull in the latest changes, you can add a remote `upstream` pointing to this Dawn repository.
+---
 
-1. Navigate to your local theme folder.
-2. Verify the list of remotes and validate that you have both an `origin` and `upstream`:
-```sh
-git remote -v
-```
-3. If you don't see an `upstream`, you can add one that points to Shopify's Dawn repository:
-```sh
-git remote add upstream https://github.com/Shopify/dawn.git
-```
-4. Pull in the latest Dawn changes into your repository:
-```sh
-git fetch upstream
-git pull upstream main
-```
+## 🤖 2. Notes on the AI Workflow
 
-## Developer tools
+As an AI Product Engineer, my goal is to leverage agentic workflows for volume and velocity, while retaining absolute control over the microscopic details that define a premium product.
 
-There are a number of really useful tools that the Shopify Themes team uses during development. Dawn is already set up to work with these tools.
+### What was delegated:
+I relied heavily on my AI agent to execute the structural scaffolding. The agent parsed the monolithic HTML, split the DOM elements into respective Liquid sections, extracted the embedded CSS into individual asset files, and hooked up the baseline Shopify Liquid iteration logic (`{% for product in collections[...].products %}`).
 
-### Shopify CLI
+### Where the AI failed (and how I caught it):
+The AI is inherently blind to spatial edge cases. While it correctly ported the code, it failed to anticipate how the original prototype's fixed font sizes would behave on a 320px screen when populated with real Shopify data. 
 
-[Shopify CLI](https://github.com/Shopify/shopify-cli) helps you build Shopify themes faster and is used to automate and enhance your local development workflow. It comes bundled with a suite of commands for developing Shopify themes—everything from working with themes on a Shopify store (e.g. creating, publishing, deleting themes) or launching a development server for local theme development.
+I caught these breaks through rigorous manual QA across device viewports. I had to manually step in and direct the AI to implement `-webkit-line-clamp` rules for text overflow, reduce button padding thresholds, and adjust flex-wrap behaviors for the pricing blocks that were touching the screen edges.
 
-You can follow this [quick start guide for theme developers](https://shopify.dev/docs/themes/tools/cli) to get started.
+### What I would systematize for scale:
+If I had to build 20 more of these themes concurrently, I would systemize a **"Shopify Mobile Defensive Cheatsheet"**. 
+Instead of letting the AI blindly convert design code to Liquid, I would inject a strict set of `@media (max-width: 360px)` guardrails into the agent's initial prompt—mandating that all product titles must be clamped, and all grid gaps must scale dynamically. This would prevent the AI from failing the mobile responsiveness QA on the first pass, massively accelerating the time from spec to deployment.
 
-### Theme Check
+---
 
-We recommend using [Theme Check](https://github.com/shopify/theme-check) as a way to validate and lint your Shopify themes.
-
-We've added Theme Check to Dawn's [list of VS Code extensions](/.vscode/extensions.json) so if you're using Visual Studio Code as your code editor of choice, you'll be prompted to install the [Theme Check VS Code](https://marketplace.visualstudio.com/items?itemName=Shopify.theme-check-vscode) extension upon opening VS Code after you've forked and cloned Dawn.
-
-You can also run it from a terminal with the following Shopify CLI command:
-
-```bash
-shopify theme check
-```
-
-### Continuous Integration
-
-Dawn uses [GitHub Actions](https://github.com/features/actions) to maintain the quality of the theme. [This is a starting point](https://github.com/Shopify/dawn/blob/main/.github/workflows/ci.yml) and what we suggest to use in order to ensure you're building better themes. Feel free to build off of it!
-
-#### Shopify/lighthouse-ci-action
-
-We love fast websites! Which is why we created [Shopify/lighthouse-ci-action](https://github.com/Shopify/lighthouse-ci-action). This runs a series of [Google Lighthouse](https://developers.google.com/web/tools/lighthouse) audits for the home, product and collections pages on a store to ensure code that gets added doesn't degrade storefront performance over time.
-
-#### Shopify/theme-check-action
-
-Dawn runs [Theme Check](#Theme-Check) on every commit via [Shopify/theme-check-action](https://github.com/Shopify/theme-check-action).
-
-## Contributing
-
-Want to make commerce better for everyone by contributing to Dawn? We'd love your help! Please read our [contributing guide](https://github.com/Shopify/dawn/blob/main/.github/CONTRIBUTING.md) to learn about our development process, how to propose bug fixes and improvements, and how to build for Dawn.
-
-## Code of conduct
-
-All developers who wish to contribute through code or issues, please first read our [Code of Conduct](https://github.com/Shopify/dawn/blob/main/.github/CODE_OF_CONDUCT.md).
-
-## Theme Store submission
-
-The [Shopify Theme Store](https://themes.shopify.com/) is the place where Shopify merchants find the themes that they'll use to showcase and support their business. As a theme partner, you can create themes for the Shopify Theme Store and reach an international audience of an ever-growing number of entrepreneurs.
-
-Ensure that you follow the list of [theme store requirements](https://shopify.dev/themes/store/requirements) if you're interested in becoming a [Shopify Theme Partner](https://themes.shopify.com/services/themes/guidelines) and building themes for the Shopify platform.
-
-## License
-
-Copyright (c) 2021-present Shopify Inc. See [LICENSE](/LICENSE.md) for further details.
+*Thank you for reviewing my build! I am incredibly excited about the opportunity to build resilient, high-volume delivery infrastructure at Troopod.*
