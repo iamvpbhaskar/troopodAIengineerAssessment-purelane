@@ -40,23 +40,7 @@ header#hdr.up{top:10px}
 
 .brand, .ico { text-decoration: none !important; }
 
-/* Adapt for light backgrounds on inner pages */
-body:not(.template-index) .nav a {
-  color: #17102b !important;
-}
-body:not(.template-index) .nav a:hover {
-  color: #4b3a8f !important;
-}
-body:not(.template-index) .brand .n1 {
-  color: #17102b !important;
-}
-body:not(.template-index) .ico {
-  color: #17102b !important;
-}
-body:not(.template-index) .ico:hover {
-  background: rgba(23, 16, 43, 0.08) !important;
-  color: #4b3a8f !important;
-}
+/* Header colors are now globally aligned with the dark theme */
 
 /* ---------- MOBILE MENU ---------- */
 .mob-menu {
@@ -152,17 +136,4 @@ body:not(.template-index) .ico:hover {
   .mob-menu { display: none !important; }
 }
 
-/* Light Theme overrides for mobile dropdown */
-body:not(.template-index) .mob-menu {
-  background: rgba(255, 255, 255, 0.95);
-  border: 1px solid rgba(23, 16, 43, 0.1);
-}
-
-body:not(.template-index) .mob-nav a {
-  color: #17102b !important;
-}
-
-body:not(.template-index) .burger {
-  background: rgba(23, 16, 43, 0.08);
-  border: 1px solid rgba(23, 16, 43, 0.1);
-}
+/* Mobile menu is now aligned with the global dark theme */

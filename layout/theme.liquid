@@ -125,6 +125,25 @@
         background-color: rgb(var(--color-background));
       }
 
+      /* Force global dark mode to fix white interior pages */
+      :root, .color-scheme-1, .color-scheme-2, .color-scheme-3, .color-scheme-4, .color-scheme-5 {
+        --color-background: 23, 16, 43 !important;
+        --color-foreground: 236, 230, 247 !important;
+        --gradient-background: radial-gradient(126% 86% at 50% 28%, transparent 38%, rgba(5,2,14,.3) 78%, rgba(2,0,5,.55) 100%), linear-gradient(180deg, #17102b 0%, #031615 100%) !important;
+        --color-button: 184, 112, 28 !important;
+        --color-button-text: 255, 255, 255 !important;
+        --color-secondary-button: 255, 255, 255 !important;
+        --color-link: 236, 230, 247 !important;
+        --color-base-text: 236, 230, 247 !important;
+      }
+      body {
+        background-color: #17102b !important;
+        background-image: radial-gradient(126% 86% at 50% 28%, transparent 38%, rgba(5,2,14,.3) 78%, rgba(2,0,5,.55) 100%),
+                          linear-gradient(180deg, #17102b 0%, #031615 100%) !important;
+        background-attachment: fixed !important;
+        color: #ece6f7 !important;
+      }
+
       :root {
         --font-body-family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
         --font-body-style: {{ settings.type_body_font.style }};

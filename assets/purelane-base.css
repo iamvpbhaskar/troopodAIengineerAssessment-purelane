@@ -216,12 +216,21 @@ html {
 }
 
 /* ---------- GLOBAL BACKGROUND & OVERRIDES ---------- */
-body.template-index {
+body {
   background-color: #17102b;
   background-image: radial-gradient(126% 86% at 50% 28%, transparent 38%, rgba(5,2,14,.3) 78%, rgba(2,0,5,.55) 100%),
                     linear-gradient(180deg, #17102b 0%, #031615 100%);
   background-attachment: fixed;
   color: var(--paper);
+}
+
+/* Force Dawn default interior components to dark mode */
+:root, .color-scheme-1, .color-scheme-2 {
+    --color-background: 23, 16, 43 !important;
+    --color-foreground: 236, 230, 247 !important;
+    --color-button: 184, 112, 28 !important;
+    --color-button-text: 255, 255, 255 !important;
+    --color-secondary-button: 255, 255, 255 !important;
 }
 
 /* Fix header alignment overlap for all interior pages */
