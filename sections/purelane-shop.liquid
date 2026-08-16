@@ -23,8 +23,13 @@
 
     <div class="shelf">
       {%- assign products_to_show = section.settings.products_to_show -%}
-      {%- if section.settings.collection != blank and section.settings.collection.products.size > 0 -%}
-        {%- for product in section.settings.collection.products limit: products_to_show -%}
+      {%- assign shop_collection = section.settings.collection -%}
+      {%- if shop_collection == blank or shop_collection.products.size == 0 -%}
+        {%- assign shop_collection = collections['all'] -%}
+      {%- endif -%}
+
+      {%- if shop_collection != blank and shop_collection.products.size > 0 -%}
+        {%- for product in shop_collection.products limit: products_to_show -%}
           {%- liquid
             assign anim_index = forloop.index0 | modulo: 4
             assign anim_class = ''
