@@ -34,10 +34,17 @@
   </div>
   
   {%- if product.available -%}
-    {%- form 'product', product, id: product.id, class: 'card-form' -%}
-      <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-      <button type="submit" class="btn btn-ghost btn-sm">Add to cart</button>
-    {%- endform -%}
+    <product-form>
+      {%- form 'product', product, id: product.id, class: 'card-form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+        <button type="submit" name="add" class="btn btn-ghost btn-sm">
+          <span>Add to cart</span>
+          <div class="loading__spinner hidden" style="display:flex">
+            <svg aria-hidden="true" focusable="false" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg" style="width: 14px; height: 14px; animation: 2s linear infinite svg-animation"><circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30" stroke="currentColor"></circle></svg>
+          </div>
+        </button>
+      {%- endform -%}
+    </product-form>
   {%- else -%}
     <button class="btn btn-ghost btn-sm" disabled>Sold out</button>
   {%- endif -%}
